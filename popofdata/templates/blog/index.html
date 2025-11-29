@@ -1,0 +1,501 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    /* Hero Banner */
+    .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url('{% static "images/pop_of_data.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+    }
+
+    .hero-content h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 72px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        animation: fadeInUp 1s ease;
+        color: #fff;
+    }
+
+    .hero-content h1 span {
+        color: #e91e63;
+    }
+
+    .hero-content p {
+        font-size: 24px;
+        font-weight: 300;
+        margin-bottom: 40px;
+        animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    .scroll-down {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        font-size: 24px;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s;
+        animation: fadeInUp 1s ease 0.4s both;
+    }
+
+    .scroll-down i {
+        color: #fff;
+    }
+
+    .scroll-down:hover {
+        background: #e91e63;
+        border-color: #e91e63;
+        color: #fff;
+        transform: translateY(5px);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Header & Navigation */
+    header {
+        background: transparent;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: background 0.3s;
+    }
+
+    header.scrolled {
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    header.scrolled .logo {
+        color: #e91e63;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    header.scrolled .nav-links a {
+        color: #333;
+    }
+
+    .nav-links a:hover {
+        color: #e91e63;
+    }
+
+    /* Portfolio Section */
+    .portfolio {
+        padding: 80px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 50px;
+    }
+
+    .filter-btn {
+        padding: 10px 25px;
+        border: none;
+        background: #f5f5f5;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
+        cursor: pointer;
+        border-radius: 30px;
+        transition: all 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: #e91e63;
+        color: #fff;
+    }
+
+    /* Portfolio Grid */
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+    }
+
+    a.portfolio-item {
+        display: block;
+        text-decoration: none;
+    }
+
+    .portfolio-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .portfolio-item img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+
+    .portfolio-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .portfolio-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        display: flex;
+        align-items: flex-end;
+        padding: 25px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+        opacity: 1;
+    }
+
+    .portfolio-overlay h3 {
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .portfolio-overlay h3 a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .portfolio-overlay h3 a:hover {
+        color: #e91e63;
+    }
+
+    /* Category Tags */
+    .category-tag {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #e91e63;
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    /* Newsletter Section */
+    .newsletter {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        padding: 80px 20px !important;
+        color: #fff !important;
+    }
+
+    .newsletter-content {
+        max-width: 800px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+    }
+
+    .newsletter-text h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #fff !important;
+    }
+
+    .newsletter-text p {
+        font-size: 18px;
+        opacity: 0.9;
+        color: #fff !important;
+    }
+
+    .newsletter-form h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #fff !important;
+    }
+
+    .newsletter-form input[type="email"],
+    .newsletter-form input[type="text"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        background: #fff !important;
+        color: #333 !important;
+    }
+
+    .newsletter-form button {
+        width: 100%;
+        padding: 12px 25px;
+        background: #fff !important;
+        color: #764ba2 !important;
+        border: none;
+        border-radius: 5px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .newsletter-form button:hover {
+        background: #e91e63 !important;
+        color: #fff !important;
+    }
+
+    /* Footer */
+    footer {
+        background: #222;
+        color: #fff;
+        padding: 30px 20px;
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    footer p {
+        font-size: 14px;
+        color: #888;
+    }
+
+    .social-icons a {
+        color: #fff;
+        margin-left: 15px;
+        font-size: 18px;
+        transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+        color: #e91e63;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    header.scrolled .mobile-menu-btn {
+        color: #333;
+    }
+
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 42px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+        }
+
+        .portfolio-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .newsletter-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header id="header">
+    <nav>
+        <a href="{% url 'blog:home' %}" class="logo">Pop-of-Data</a>
+    </nav>
+</header>
+
+<!-- Hero Banner -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Pop of<span>Data</span></h1>
+        <p>Data Science for Pop Culture</p>
+        <a href="#portfolio" class="scroll-down"><i class="fa fa-angle-down"></i></a>
+    </div>
+</section>
+
+<!-- Portfolio Section -->
+<section class="portfolio" id="portfolio">
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        {% for category in categories %}
+        <button class="filter-btn" data-filter="{{ category.slug }}">{{ category.name }}</button>
+        {% endfor %}
+    </div>
+
+    <div class="portfolio-grid">
+        {% for post in posts %}
+        <a href="{{ post.get_absolute_url }}" class="portfolio-item" data-category="{{ post.category.slug }}">
+            <span class="category-tag">{{ post.category.name }}</span>
+            <img src="{{ post.featured_image }}" alt="{{ post.title }}">
+            <div class="portfolio-overlay">
+                <h3>{{ post.title }}</h3>
+            </div>
+        </a>
+        {% empty %}
+        <p>No posts yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <p>&copy; Pop-of-Data. 2019 All Rights Reserved</p>
+        <div class="social-icons">
+            <a href="https://x.com/0xoddrey" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.instagram.com/audreyakwenye" target="_blank"><i class="fa fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Header scroll effect
+    window.addEventListener('scroll', function () {
+        const header = document.getElementById('header');
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Portfolio filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            const filter = this.dataset.filter;
+
+            portfolioItems.forEach(item => {
+                if (filter === 'all' || item.dataset.category.includes(filter)) {
+                    item.style.display = 'block';
+                    item.style.animation = 'fadeInUp 0.5s ease';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
