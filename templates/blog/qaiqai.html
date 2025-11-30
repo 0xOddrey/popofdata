@@ -1,0 +1,394 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Who's the @RealQaiQai? | Pop-of-Data{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        line-height: 1.7;
+        color: #333;
+        background: #f9f9f9;
+    }
+
+    header {
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #e91e63;
+        text-decoration: none;
+    }
+
+    main {
+        max-width: 900px;
+        margin: 100px auto 40px;
+        padding: 0 20px;
+    }
+
+    .post-container {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .post-img {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+    }
+
+    .post-content {
+        padding: 40px;
+    }
+
+    .post-title h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 15px;
+    }
+
+    .post-meta {
+        color: #888;
+        font-size: 14px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 20px;
+    }
+
+    .post-meta i {
+        margin-right: 5px;
+        color: #e91e63;
+    }
+
+    .post-body p {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    .post-body h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 28px;
+        font-weight: 600;
+        color: #222;
+        margin: 40px 0 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #e91e63;
+    }
+
+    .post-body h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: #333;
+        margin: 30px 0 15px;
+    }
+
+    pre {
+        background: #2d2d2d;
+        color: #f8f8f2;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 20px 0;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    code {
+        font-family: 'Courier New', monospace;
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        margin: 30px 0;
+        border-radius: 8px;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 8px;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin: 30px 0;
+    }
+
+    .gallery img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.02);
+    }
+
+    .conclusion {
+        background: #f8f9fa;
+        color: #333;
+        padding: 30px;
+        border-radius: 8px;
+        margin: 30px 0;
+        border-left: 4px solid #e91e63;
+    }
+
+    .conclusion h3 {
+        color: #333;
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .conclusion p {
+        color: #333;
+    }
+
+    .conclusion strong {
+        color: #e91e63;
+    }
+
+    .conclusion-img {
+        width: 100%;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+
+    .author-box {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        background: #f5f5f5;
+        padding: 30px;
+        border-radius: 8px;
+        margin-top: 40px;
+    }
+
+    .author-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .author-bio h4 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .author-bio p {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .author-social {
+        display: flex;
+        gap: 15px;
+    }
+
+    .author-social a {
+        color: #333;
+        font-size: 18px;
+        transition: color 0.3s;
+    }
+
+    .author-social a:hover {
+        color: #e91e63;
+    }
+
+    footer {
+        background: #222;
+        color: #fff;
+        padding: 30px;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    footer p {
+        font-size: 14px;
+        color: #888;
+    }
+
+    footer .social-icons {
+        margin-top: 15px;
+    }
+
+    footer .social-icons a {
+        color: #fff;
+        margin: 0 10px;
+        font-size: 18px;
+        transition: color 0.3s;
+    }
+
+    footer .social-icons a:hover {
+        color: #e91e63;
+    }
+
+    @media (max-width: 768px) {
+        .post-title h1 {
+            font-size: 28px;
+        }
+
+        .post-content {
+            padding: 25px;
+        }
+
+        .author-box {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header>
+    <nav>
+        <a href="{% url 'blog:home' %}" class="logo">Pop-of-Data</a>
+    </nav>
+</header>
+
+<main>
+    <article class="post-container">
+        <img src="{% static 'images/qaiqai.png' %}" alt="Who's the @RealQaiQai?" class="post-img">
+
+        <div class="post-content">
+            <div class="post-title">
+                <h1>Who's the @RealQaiQai?</h1>
+            </div>
+
+            <div class="post-meta">
+                <span><i class="fa fa-user"></i> Audrey Taylor-Akwenye</span>
+                <span><i class="fa fa-calendar"></i> April 8, 2019</span>
+            </div>
+
+            <div class="post-body">
+                <p>Natural Language processing is a Machine Learning application where we can train a computer to analyze and attempt to interpret human-readable text. Unfortunately, the underlying language of computers is math, so there needs to be a method to translate human-readable text into math. Word to Vector is a method to do just that. I have used Basilica to create Word2Vec embeddings of hundreds of tweets to solve one of the biggest social media mysteries of the last year….. <strong>WHO IS @REALQAIQAI?</strong></p>
+
+                <p>In mid-August 2018, a new account for @RealQaiQai sent her first tweet. This alone doesn't seem odd as more than half a million users tweet daily. However, Qai Qai is a small African American baby doll who's the partner-in-crime to Olympia Ohanian, the daughter of Serena Williams and Alexis Ohanian. The @RealQaiQai has since become America's favorite doll with over 20k Twitter followers.</p>
+
+                <div class="gallery">
+                    <img src="{% static 'images/2.png' %}" alt="Alexis Ohanian">
+                    <img src="{% static 'images/3.png' %}" alt="Serena Williams">
+                    <img src="{% static 'images/4.png' %}" alt="Olympia Ohanian">
+                    <img src="{% static 'images/5.png' %}" alt="Qai Qai">
+                </div>
+
+                <p>The world became obsessed with the blossoming relationship between Serena and Alexis in 2018, when the couple announced their engagement. In September, Olympia was born, and by August, the new parents were grandparents. Qai Qai the Doll became an instant hit on Twitter and Instagram with her catchy clap backs and beautiful pics from a doll's point of view. However, unlike Olympia's Twitter profile which clearly explains that both mom and dad manage the account, the adoring fans of @RealQaiQai have no idea which superstar parent is the author behind the account.</p>
+
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/ge3NCQNBDqg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+                <p>Many believe it's Alexis, the founder of Reddit, because of his background in tech and love of social media. Using Natural Language Processing and a Logistic Regression model, we can finally put this mystery to bed.</p>
+
+                <h2>The Code</h2>
+
+                <h3>Using Twitter API</h3>
+                <p>The first step to solving this 'who done it' is to pull tweet history from @alexisohanian, @serenawilliams, and @RealQaiQai. This was done through Twitter's developer API.</p>
+
+                <pre><code># User 1
+username = "serenawilliams"
+number_of_tweets=200
+tweets = TWITTER.user_timeline(username, count=200, exclude_replies=True,
+                               include_rts=False, tweet_mode='extended')
+tmp=[]
+tweets_for_csv = [tweet.full_text for tweet in tweets]
+for j in tweets_for_csv:
+    tmp.append(j)</code></pre>
+
+                <h3>Word to Vector with Basilica</h3>
+                <p>Once we have all the tweets, we use Basilica to convert words to vectors. This process turns a word into a collection of numbers that can be understood by the computer. Once the words are vectors, the computer can analyze the speech patterns, word usage, and sentiment of the tweets.</p>
+
+                <pre><code>user1 = []
+for tweet in tweets:
+    user1_embedding = BASILICA.embed_sentence(tweet.full_text, model='twitter')
+    user1.append(user1_embedding)</code></pre>
+
+                <h3>Apply Logistic Regression Model</h3>
+                <p>We then feed all this analysis into a logistic regression model. We train the computer to identify which tweets were written by Serena and which were written by Alexis. After training, we fed the word to vector information from QaiQai. The logistic regression model can then predict which tweet was more similar to Serena's tweets, and which were more like Alexis.</p>
+
+                <pre><code>import numpy as np
+from sklearn.linear_model import LogisticRegression
+
+embeddings = np.vstack([user1, user2])
+labels = np.concatenate([np.ones(len(user1)),
+                         np.zeros(len(user2))])
+log_reg = LogisticRegression().fit(embeddings, labels)</code></pre>
+
+                <h3>Predict Parent Author</h3>
+                <p>And finally, we can compare the predictions of each tweet from @RealQaiQai to see which parent was predicted more often. Drum roll please…..</p>
+
+                <pre><code>preds = []
+for tweets in tmp3:
+    tweet_embedding = BASILICA.embed_sentence(tweets, model='twitter')
+    prediction = log_reg.predict(np.array(tweet_embedding).reshape(1, -1))
+    preds.append(prediction)</code></pre>
+
+                <div class="conclusion">
+                    <h3>Conclusion</h3>
+                    <img src="{% static 'images/serenagraph.png' %}" alt="Results Graph" class="conclusion-img">
+                    <p><strong>The parent behind @RealQaiQai is roughly twice as likely to be Serena than Alexis.</strong> The results don't definitively say that only Serena Williams is the author of @RealQaiQai, but it looks likely.</p>
+                </div>
+
+                <div class="author-box">
+                    <img src="{% static 'images/IMG_0601.jpg' %}" alt="Audrey Taylor-Akwenye" class="author-img">
+                    <div class="author-bio">
+                        <h4>Audrey Taylor-Akwenye</h4>
+                        <p>Data Scientist, Educator, Entrepreneur</p>
+                        <div class="author-social">
+                            <a href="https://x.com/0xoddrey" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://github.com/0xoddrey" target="_blank"><i class="fa fa-github"></i></a>
+                            <a href="https://www.instagram.com/audreyakwenye" target="_blank"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
+
+<footer>
+    <p>&copy; Pop-of-Data. 2019 All Rights Reserved</p>
+    <div class="social-icons">
+        <a href="https://x.com/0xoddrey" target="_blank"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.instagram.com/audreyakwenye" target="_blank"><i class="fa fa-instagram"></i></a>
+    </div>
+</footer>
+{% endblock %}

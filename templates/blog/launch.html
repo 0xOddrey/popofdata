@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ post.title }} | Pop-of-Data{% endblock %}
+{% block title %}How Founder University Changed My Life | Pop-of-Data{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -12,7 +12,6 @@
         background: #f9f9f9;
     }
 
-    /* Header & Navigation */
     header {
         background: #fff;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -39,24 +38,6 @@
         text-decoration: none;
     }
 
-    .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 30px;
-    }
-
-    .nav-links a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-        color: #e91e63;
-    }
-
-    /* Main Content */
     main {
         max-width: 900px;
         margin: 100px auto 40px;
@@ -124,171 +105,6 @@
         margin: 30px 0 15px;
     }
 
-    .post-body h5 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 18px;
-        font-weight: 600;
-        color: #555;
-        margin: 20px 0;
-        line-height: 1.8;
-    }
-
-    /* Code Blocks */
-    pre {
-        background: #2d2d2d;
-        color: #f8f8f2;
-        padding: 20px;
-        border-radius: 8px;
-        overflow-x: auto;
-        margin: 20px 0;
-        font-family: 'Courier New', monospace;
-        font-size: 13px;
-        line-height: 1.5;
-    }
-
-    code {
-        font-family: 'Courier New', monospace;
-    }
-
-    /* Video */
-    .video-container {
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
-        margin: 30px 0;
-        border-radius: 8px;
-    }
-
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-radius: 8px;
-    }
-
-    /* Images */
-    .content-img {
-        width: 100%;
-        border-radius: 8px;
-        margin: 20px 0;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Gallery */
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-        margin: 30px 0;
-    }
-
-    .gallery img {
-        width: 100%;
-        border-radius: 8px;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
-    }
-
-    .gallery img:hover {
-        transform: scale(1.02);
-    }
-
-    /* Results Gallery */
-    .results-gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        margin: 30px 0;
-    }
-
-    .result-card {
-        background: #f5f5f5;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
-    }
-
-    .result-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .result-card img {
-        width: 100%;
-        display: block;
-    }
-
-    .result-card h4 {
-        padding: 15px;
-        text-align: center;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 16px;
-        color: #333;
-    }
-
-    /* Topic List */
-    .topic-list {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #fff;
-        padding: 30px;
-        border-radius: 8px;
-        margin: 30px 0;
-    }
-
-    .topic-list h3 {
-        color: #fff;
-        margin-top: 0;
-        margin-bottom: 20px;
-    }
-
-    /* Conclusion Box */
-    .conclusion {
-        background: #f8f9fa;
-        color: #333;
-        padding: 30px;
-        border-radius: 8px;
-        margin: 30px 0;
-        border-left: 4px solid #e91e63;
-    }
-
-    .conclusion h3 {
-        color: #333;
-        margin-top: 0;
-        margin-bottom: 20px;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .conclusion p {
-        color: #333;
-    }
-
-    .conclusion strong {
-        color: #e91e63;
-    }
-
-    .topic-item {
-        background: rgba(255, 255, 255, 0.15);
-        padding: 12px 15px;
-        border-radius: 6px;
-        margin-bottom: 10px;
-        font-size: 14px;
-    }
-
-    .topic-item strong {
-        color: #ffd700;
-    }
-
-    .conclusion-img {
-        width: 100%;
-        border-radius: 8px;
-        margin: 20px 0;
-    }
-
-    /* Blockquote */
     blockquote {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: #fff;
@@ -311,7 +127,6 @@
         font-family: Georgia, serif;
     }
 
-    /* Lists */
     .post-body ul {
         margin: 20px 0;
         padding-left: 25px;
@@ -327,7 +142,6 @@
         color: #e91e63;
     }
 
-    /* Key Points Box */
     .key-points {
         background: #f8f9fa;
         border-left: 4px solid #e91e63;
@@ -347,7 +161,6 @@
         margin-bottom: 10px;
     }
 
-    /* Benefit Cards */
     .benefit-card {
         background: #fff;
         border: 1px solid #eee;
@@ -367,7 +180,6 @@
         margin-bottom: 0;
     }
 
-    /* Instagram Placeholder */
     .instagram-placeholder {
         background: #fafafa;
         border: 1px solid #dbdbdb;
@@ -393,7 +205,6 @@
         margin-bottom: 15px;
     }
 
-    /* Author Box */
     .author-box {
         display: flex;
         gap: 20px;
@@ -438,7 +249,6 @@
         color: #e91e63;
     }
 
-    /* Footer */
     footer {
         background: #222;
         color: #fff;
@@ -467,7 +277,6 @@
         color: #e91e63;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
         .post-title h1 {
             font-size: 28px;
@@ -482,14 +291,6 @@
             text-align: center;
         }
 
-        .nav-links {
-            display: none;
-        }
-
-        .results-gallery {
-            grid-template-columns: 1fr;
-        }
-
         blockquote {
             padding: 25px;
             font-size: 18px;
@@ -499,30 +300,92 @@
 {% endblock %}
 
 {% block content %}
-<!-- Header -->
 <header>
     <nav>
         <a href="{% url 'blog:home' %}" class="logo">Pop-of-Data</a>
     </nav>
 </header>
 
-<!-- Main Content -->
 <main>
     <article class="post-container">
-        <img src="{{ post.featured_image }}" alt="{{ post.title }}" class="post-img">
+        <img src="{% static 'images/Founder_University.png' %}" alt="How Founder University Changed My Life" class="post-img">
 
         <div class="post-content">
             <div class="post-title">
-                <h1>{{ post.title }}</h1>
+                <h1>How Founder University Changed My Life</h1>
             </div>
 
             <div class="post-meta">
-                <span><i class="fa fa-user"></i> {{ post.author }}</span>
-                <span><i class="fa fa-calendar"></i> {{ post.published_date|date:"F j, Y" }}</span>
+                <span><i class="fa fa-user"></i> Audrey Taylor-Akwenye</span>
+                <span><i class="fa fa-calendar"></i> May 1, 2019</span>
             </div>
 
             <div class="post-body">
-                {{ post.content|safe }}
+                <p>6 months ago, I attended Founder University, a free workshop hosted in San Francisco by Jason Calacanis. It was my first time in San Francisco and the experience completely changed the trajectory of my life. To explain how, I have to go back a few months before.</p>
+
+                <p>In July of 2018, I launched my edtech startup Schoolio. The platform was geared towards low-cost private schools in developing countries to help them manage their student data and use machine learning to improve student outcomes. I took the experiences and systems I developed while building a low-cost private school in Namibia and went looking for a developer to help me automate my pedagogical techniques. Four months later, I had paid out over $30,000 USD to a developer consultant who didn't have the skills to fully flesh out the "V" in my MVP. I was out of money and still didn't have a proof of concept. My company was definitely circling the drain.</p>
+
+                <p>I decided to part ways with the consultant and find a more skilled (and probably more expensive) consultancy firm. I tried finding a technical co-founder but convincing a stranger to build for free was a hard sell and I didn't have the funding to commit to bringing on a full-time employee. So, working with consultants looked like my only option. I found a consultancy firm that focused on machine learning and after a few video chats, I was presented with their quote:</p>
+
+                <blockquote>$60,000 USD with a 4-month development timeline.</blockquote>
+
+                <p>The problem with the quote was 1. I didn't have 60k and 2. What was I supposed to do for 4 months while I waited on the product to be developed?</p>
+
+                <h2>Then I went to Founder University...</h2>
+
+                <div class="instagram-placeholder">
+                    <div class="ig-icon"><i class="fa fa-instagram"></i></div>
+                    <p>View this post on Instagram</p>
+                    <p><a href="https://www.instagram.com/p/Bp7h31vh4SG/" target="_blank">A post shared by Audrey Taylor Akwenye (@audreyakwenye)</a></p>
+                    <p style="color: #888; font-size: 12px;">Nov 8, 2018</p>
+                </div>
+
+                <p>These were the challenges I had to overcome when I was accepted to Founder University. I shared these problems in discussions with the other workshop participants as well as the panelists. During the three days, I saw a pattern emerge:</p>
+
+                <ul>
+                    <li>Companies with technical founders had challenges like gaining customers, building a brand, and/or perfecting sales strategy</li>
+                    <li>Companies with non-technical founders all had the same challenge — how to get technical talent.</li>
+                </ul>
+
+                <p>Frustrated by what this pattern meant for my company, I asked Jason, "What do you do if you need money to build the MVP, but you need the MVP to get the money?" He said very frankly (I'm paraphrasing his frankness) —</p>
+
+                <blockquote>If you can't figure out how to get your product to market, you don't deserve to be a founder.</blockquote>
+
+                <p>This statement was really an "Aha" moment for me. In essence, he was urging us to get the product developed by any means necessary. I want to disclaim that "by any means necessary" is different for everyone. I'm not saying the path I took for my "by any means necessary" is the only or even the best way. It's merely the choices I made.</p>
+
+                <p>I looked at the 60k quote I received and thought:</p>
+
+                <div class="key-points">
+                    <h4>"What is needed to build my product?"</h4>
+                    <p><strong>1. Knowledge/Skill</strong></p>
+                    <p><strong>2. Time</strong></p>
+                    <p><strong>3. Money</strong></p>
+                </div>
+
+                <p>Currently, I only had the time. I needed either the knowledge/skill or the money to pay for the knowledge/skill. With that, I knew what I needed to do.</p>
+
+                <p>Instead of spending another year trying to find the money to hire someone to build my site, I would spend that time acquiring the knowledge to do it myself. 4 months and 60k sound like a great start to an education. Before that moment, I had never once considered obtaining any formal education in tech. But now, I saw studying as the best investment for my business. It was the only guaranteed way I saw getting my product to market.</p>
+
+                <p>That's when I decided to join Lambda School in the Data Science program. It also helped that I didn't have to pay up front. My thought process was that one of two things would happen. Either, I would acquire the skills to relaunch Schoolio and then I could hire myself to pay back my ISA or Schoolio was destined to fail and at least I would be able to get a job afterward.</p>
+
+                <p>Now 6 months later, I'm relaunching Schoolio with a pivot now using AI to support High School students in Africa and I was able to write all the code, structure every database, and build every algorithm. Becoming my own technical co-founder has helped me see the benefit of having a strong technical founding team. Once again, this is what I felt was right for my company and that doesn't mean that every tech company has to have a technical cofounder. For me, becoming a technical founder allowed me to:</p>
+
+                <div class="benefit-card">
+                    <h3>Become more Agile</h3>
+                    <p>Building my own tech means that I can change and iterate quickly as I get feedback from my team or customers. Working with a consultant means even little changes can take weeks.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Become more Defensible</h3>
+                    <p>I am able to develop tech that can implement new techniques or applications making me more defensible in the market. Outsourcing development means I would probably only get something that has been developed before.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Know what's possible</h3>
+                    <p>I don't plan on being the only developer on the team forever but as CEO, I'm now able to have a better understanding of what is possible and on what timeline. This helps me lead and manage a team of developers in the future.</p>
+                </div>
+
+                <p>So now 6 months later, I've begun my journey as a Data Scientist. Because of this I'm exploring so many ways Schoolio can use AI to improve Global Education. All of this because of the experience and advice I received at Founder University.</p>
 
                 <div class="author-box">
                     <img src="{% static 'images/IMG_0601.jpg' %}" alt="Audrey Taylor-Akwenye" class="author-img">
@@ -541,7 +404,6 @@
     </article>
 </main>
 
-<!-- Footer -->
 <footer>
     <p>&copy; Pop-of-Data. 2019 All Rights Reserved</p>
     <div class="social-icons">

@@ -1,37 +1,17 @@
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
-from .models import Post, Category
+from django.shortcuts import render
 
 
-class HomeView(ListView):
-    model = Post
-    template_name = 'blog/index.html'
-    context_object_name = 'posts'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        return context
+def home(request):
+    return render(request, 'blog/index.html')
 
 
-class PostDetailView(DetailView):
-    model = Post
-    template_name = 'blog/post_detail.html'
-    context_object_name = 'post'
-    slug_url_kwarg = 'slug'
+def qaiqai(request):
+    return render(request, 'blog/qaiqai.html')
 
 
-class CategoryPostsView(ListView):
-    model = Post
-    template_name = 'blog/category_posts.html'
-    context_object_name = 'posts'
+def beyonce(request):
+    return render(request, 'blog/beyonce.html')
 
-    def get_queryset(self):
-        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
-        return Post.objects.filter(category=self.category)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['category'] = self.category
-        context['categories'] = Category.objects.all()
-        return context
+def launch(request):
+    return render(request, 'blog/launch.html')
